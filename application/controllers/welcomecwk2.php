@@ -17,9 +17,20 @@ class Welcomecwk2 extends CI_Controller {
 	 * map to /index.php/welcome/<method_name>
 	 * @see http://codeigniter.com/user_guide/general/urls.html
 	 */
-	public function myview()
+	public function index()
 	{
-		$this->load->view('myview');
+		$info = "Please enter your name below";
+		$data['test'] = $info;
+		$this->load->view('myview', $data);
+	}
+	public function name()
+	{
+		$data = $this->input->post('personName');
+		//echo $data;
+		$this->load->model('test');
+		$modelData = $this->test->name($data);
+		$viewData['test'] = $modelData;
+		$this->load->view('myview', $viewData);
 	}
 }
 
